@@ -85,4 +85,4 @@ Il design e il flusso dell’interfaccia sono stati prototipati in Figma.
 🔗 Prototipo Figma
 https://done-groove-14391780.figma.site/
 
-Nella cartella ```bash /project ``` è possibile trovare altra documentazione relativa alla fase di progettazione, come alcuni stadi di mockup precedenti al confronto con il gruppo di utenti.
+Nella cartella ```/project``` è possibile trovare altra documentazione relativa alla fase di progettazione, come alcuni stadi di mockup precedenti al confronto con il gruppo di utenti.
