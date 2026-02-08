@@ -1,0 +1,534 @@
+@font-face {
+    font-family: 'Andy Bold';
+    src: url('../../assets/fonts/Andy Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+:root {
+    --terraria-grass: #3cb043;
+    --terraria-grass-dark: #228b22;
+    --terraria-sky: #87ceeb;
+    --terraria-sky-dark: #4a90b0;
+    --terraria-stone: #696969;
+    --terraria-gold: #ffd700;
+    --terraria-night: #1a1a2e;
+    --terraria-night-light: #2d2d4a;
+}
+
+* {
+    font-family: 'Andy Bold', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, 
+        var(--terraria-sky) 0%, 
+        var(--terraria-sky-dark) 30%,
+        var(--terraria-grass-dark) 70%,
+        var(--terraria-grass) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.bg-terraria {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 50%, var(--terraria-grass-dark) 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-bottom: 3px solid var(--terraria-grass-dark);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: var(--terraria-gold) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link {
+    transition: all 0.3s ease;
+    color: #fff !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    color: var(--terraria-gold) !important;
+}
+
+.nav-link.active {
+    color: var(--terraria-gold) !important;
+    font-weight: 600;
+}
+
+.card {
+    background: linear-gradient(145deg, var(--terraria-night) 0%, var(--terraria-night-light) 100%);
+    border: 3px solid var(--terraria-stone);
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 50%, var(--terraria-grass-dark) 100%);
+    border-bottom: 2px solid var(--terraria-grass-dark);
+    color: white;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(48px, 1fr));
+    gap: 8px;
+    padding: 12px;
+    background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+    border: 3px solid var(--terraria-stone);
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.inventory-slot {
+    background: linear-gradient(145deg, #3a3a4a, #2a2a3a);
+    border: 3px solid #555;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+    padding: 6px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    min-height: 48px;
+}
+
+.inventory-slot:hover {
+    border-color: var(--terraria-gold);
+    background: linear-gradient(145deg, #4a4a5a, #3a3a4a);
+    transform: scale(1.08);
+    z-index: 10;
+    box-shadow: 0 0 10px var(--terraria-gold);
+}
+
+.inventory-slot.selected {
+    border-color: var(--terraria-gold);
+    box-shadow: 0 0 12px var(--terraria-gold), inset 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.inventory-slot.empty {
+    opacity: 0.6;
+    background: linear-gradient(145deg, #2a2a38, #1a1a28);
+}
+
+.inventory-slot.hotbar {
+    background: linear-gradient(145deg, #5a5a6a, #4a4a5a);
+    border-color: #888;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.inventory-slot.hotbar.empty {
+    opacity: 0.75;
+    background: linear-gradient(145deg, #484858, #3a3a4a);
+}
+
+.inventory-slot .item-icon {
+    font-size: 1.8rem;
+    color: var(--terraria-sky);
+}
+
+.inventory-slot .item-sprite {
+    max-width: 48px;
+    max-height: 48px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.inventory-slot .item-stack {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 1rem;
+    color: white;
+    text-shadow: 1px 1px 2px black, -1px -1px 2px black;
+    font-weight: bold;
+}
+
+.inventory-slot .item-name {
+    font-size: 1.1rem;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    line-height: 1.15;
+    text-shadow: 1px 1px 2px black;
+    max-height: 2.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.btn-terraria {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 50%, var(--terraria-grass-dark) 100%);
+    border: 2px solid var(--terraria-grass-dark);
+    color: white;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-terraria:hover {
+    background: linear-gradient(90deg, var(--terraria-grass) 0%, #4dd04d 50%, var(--terraria-grass) 100%);
+    color: white;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-terraria:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-gold {
+    background: linear-gradient(90deg, #b8860b 0%, var(--terraria-gold) 50%, #b8860b 100%);
+    border: 2px solid #b8860b;
+    color: #1a1a2e;
+    font-weight: 600;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(90deg, var(--terraria-gold) 0%, #ffe44d 50%, var(--terraria-gold) 100%);
+    color: #1a1a2e;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.form-control, .form-select {
+    background: linear-gradient(145deg, var(--terraria-night) 0%, var(--terraria-night-light) 100%);
+    border: 2px solid var(--terraria-stone);
+    color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+    background: linear-gradient(145deg, var(--terraria-night-light) 0%, #3a3a5a 100%);
+    border-color: var(--terraria-gold);
+    color: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.3);
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.table {
+    color: #fff;
+}
+
+.table thead th {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 100%);
+    color: white;
+    border-bottom: 2px solid var(--terraria-grass-dark);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.table tbody tr {
+    background: rgba(42, 42, 74, 0.6);
+}
+
+.table tbody tr:hover {
+    background: rgba(60, 176, 67, 0.2);
+}
+
+.file-drop-zone {
+    border: 4px dashed var(--terraria-grass);
+    border-radius: 12px;
+    padding: 50px;
+    text-align: center;
+    background: rgba(42, 42, 74, 0.7);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.dragover {
+    border-color: var(--terraria-gold);
+    background: rgba(60, 176, 67, 0.2);
+    transform: scale(1.02);
+}
+
+.file-drop-zone i {
+    font-size: 4rem;
+    color: var(--terraria-grass);
+    margin-bottom: 15px;
+}
+
+.player-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, var(--terraria-night) 0%, var(--terraria-night-light) 100%);
+    border: 2px solid var(--terraria-stone);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-card .stat-value {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--terraria-gold);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.stat-card .stat-label {
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.stat-card.health .stat-value { color: #ff6b6b; }
+.stat-card.mana .stat-value { color: #4dabf7; }
+.stat-card.defense .stat-value { color: #69db7c; }
+
+.modal-content {
+    background: linear-gradient(145deg, var(--terraria-night) 0%, var(--terraria-night-light) 100%);
+    border: 3px solid var(--terraria-stone);
+    color: #fff;
+}
+
+.modal-header {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 50%, var(--terraria-grass-dark) 100%);
+    border-bottom: 2px solid var(--terraria-grass-dark);
+}
+
+.modal-footer {
+    border-top: 2px solid var(--terraria-stone);
+}
+
+.alert-terraria {
+    background: rgba(60, 176, 67, 0.2);
+    border: 2px solid var(--terraria-grass);
+    color: #fff;
+}
+
+.search-results {
+    max-height: 280px;
+    overflow-y: auto;
+    background: linear-gradient(145deg, var(--terraria-night) 0%, var(--terraria-night-light) 100%);
+    border: 2px solid var(--terraria-stone);
+    border-radius: 6px;
+}
+
+.search-result-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-bottom: 1px solid rgba(105, 105, 105, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-result-item:hover {
+    background: rgba(60, 176, 67, 0.25);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-item-sprite {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.preview-sprite {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.footer {
+    background: linear-gradient(90deg, var(--terraria-grass-dark) 0%, var(--terraria-grass) 50%, var(--terraria-grass-dark) 100%);
+    border-top: 3px solid var(--terraria-grass-dark);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .inventory-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        padding: 10px;
+    }
+
+    .inventory-slot {
+        min-width: 70px;
+        min-height: 70px;
+        padding: 6px;
+    }
+
+    .inventory-slot .item-icon {
+        font-size: 1.4rem;
+    }
+    
+    .inventory-slot .item-sprite {
+        max-width: 32px;
+        max-height: 32px;
+    }
+    
+    .inventory-slot .item-name {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 2;
+        max-height: 2.2em;
+    }
+    
+    .inventory-slot .item-stack {
+        font-size: 0.85rem;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--terraria-night);
+    border: 1px solid var(--terraria-stone);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--terraria-grass) 0%, var(--terraria-grass-dark) 100%);
+    border-radius: 4px;
+    border: 1px solid var(--terraria-grass-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4dd04d 0%, var(--terraria-grass) 100%);
+}
+
+.equipment-slot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: linear-gradient(145deg, #3a3a4a, #2a2a3a);
+    border: 2px solid #555;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    transition: all 0.2s ease;
+}
+
+.equipment-slot:hover {
+    border-color: var(--terraria-gold);
+    background: linear-gradient(145deg, #4a4a5a, #3a3a4a);
+}
+
+.equipment-slot .slot-label {
+    color: #ccc;
+    font-size: 0.8rem;
+    min-width: 80px;
+}
+
+.equipment-slot .slot-item {
+    flex: 1;
+    font-weight: 500;
+    color: #fff;
+}
+
+.text-terraria { color: var(--terraria-grass) !important; }
+.text-sky { color: var(--terraria-sky) !important; }
+.text-gold { color: var(--terraria-gold) !important; }
+
+.card-body {
+    color: #fff;
+}
+
+.card-body p, .card-body strong, .card-body span, .card-body label {
+    color: #fff;
+}
+
+.card .text-muted {
+    color: #bbb !important;
+}
+
+.form-label {
+    color: #fff;
+}
