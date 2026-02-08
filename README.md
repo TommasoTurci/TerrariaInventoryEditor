@@ -6,30 +6,12 @@ Il progetto permette di importare un file di salvataggio (`.plr`), visualizzare 
 
 ---
 
-## Obiettivo del progetto
-
-L’obiettivo è fornire uno strumento:
-- semplice da usare
-- completamente client-side
-- accessibile da diversi dispositivi
-
-L’applicazione è pensata come progetto didattico per il corso di **Fondamenti di Sistemi Web**, ma con un’architettura sufficientemente modulare da poter essere estesa.
-
----
-
 ## Funzionalità principali
 
 - Importazione ed esportazione dei file di salvataggio del personaggio
 - Visualizzazione completa dell’inventario
-- Ricerca e filtro degli oggetti
 - Modifica quantità, spostamento e svuotamento degli slot
-- Gestione separata di:
-  - Inventario principale
-  - Armature
-  - Accessori
-  - Piggy Bank
-  - Safe (e altre stash)
-- Interfaccia reattiva con micro-interazioni
+- Interfaccia reattiva con animazioni per migliorare l'user experience
 - Supporto opzionale alla modalità **Progressive Web App (PWA)**
 
 ---
@@ -43,7 +25,7 @@ L’applicazione è pensata come progetto didattico per il corso di **Fondamenti
 ### Animazioni
 - **anime.js** per micro-interazioni e transizioni leggere
 
-### Tooling
+### Development
 - npm
 - Vite dev server
 
@@ -55,26 +37,22 @@ L’applicazione è pensata come progetto didattico per il corso di **Fondamenti
 
 ## Struttura del progetto
 
-src/
-├── main.js # Entry point dell'app
-├── App.vue # Layout globale
-├── index.js # Definizione delle rotte
-├── views/
-│ ├── editor.vue # Editor principale
-│ ├── import.vue # Import dei salvataggi
-│ └── inventory.vue # Vista inventario
-├── scripts/
-│ ├── parser.js # Parsing file .plr
-│ ├── inventory.js # Logica inventario
-│ └── import.js # Gestione import
-├── storage.js # Helper per localStorage
-├── items-database.js # Database locale degli oggetti
-├── style.css # Stili globali
-public/
-├── index.html
-├── manifest.webmanifest # Configurazione PWA
-└── assets/ # Icone e immagini
+La posizione dei file principali:
 
+- [src/main.js](src/main.js) — entry point dell'app
+- [src/App.vue](src/App.vue) — layout globale e `router-view`
+- [src/router/index.js](src/router/index.js) — rotte
+- [src/views/editor.vue](src/views/editor.vue) — editor principale
+- [src/views/import.vue](src/views/import.vue) — UI per importare i salvataggi
+- [src/views/inventory.vue](src/views/inventory.vue) — vista inventario
+- [src/data/items-database.js](src/data/items-database.js) — database locale degli oggetti
+- [src/scripts/parser.js](src/scripts/parser.js) — parsing dei file `.plr`
+- [src/scripts/inventory.js](src/scripts/inventory.js) — logica di manipolazione inventario
+- [src/utils/storage.js](src/utils/storage.js) — helper per localStorage
+- [src/css/style.css](src/css/style.css) — stili globali
+- [public/index.html](public/index.html) — entry HTML
+- [public/manifest.webmanifest](public/manifest.webmanifest) — configurazione PWA (opzionale)
+- `assets/`, `public/assets/` — icone e immagini
 
 ---
 
@@ -84,9 +62,7 @@ public/
 2. L’utente importa un file di salvataggio del personaggio
 3. Il file viene convertito in una struttura dati JavaScript tramite il parser
 4. Le viste Vue mostrano i dati e consentono le modifiche
-5. Al salvataggio, i dati vengono serializzati ed esportati come nuovo file
-
-Tutta la logica è eseguita lato client, senza comunicazioni con server esterni.
+5. Al salvataggio, i dati vengono serializzati ed esportati come un file JSON.
 
 ---
 
@@ -96,10 +72,17 @@ Tutta la logica è eseguita lato client, senza comunicazioni con server esterni.
 ```bash
 npm install
 npm run dev
+```
+
 Build di produzione
+```bash
 npm run build
+```
+
 Design e prototipo
 Il design e il flusso dell’interfaccia sono stati prototipati in Figma.
 
 🔗 Prototipo Figma
 https://done-groove-14391780.figma.site/
+
+Nella cartella ```bash /project ``` è possibile trovare altra documentazione relativa alla fase di progettazione, come alcuni stadi di mockup precedenti al confronto con il gruppo di utenti.
