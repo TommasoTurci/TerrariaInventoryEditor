@@ -4,10 +4,10 @@
       <div class="col-lg-8 mx-auto">
         <div class="card">
           <div class="card-header">
-            <h4><i class="bi bi-info-circle"></i> Funzionalità: Progressive Web App & anime.js</h4>
+            <h4><em class="bi bi-info-circle" aria-hidden="true"></em> Funzionalità: Progressive Web App & anime.js</h4>
           </div>
           <div class="card-body">
-            <h6><i class="bi bi-phone text-info"></i> Progressive Web App (PWA)</h6>
+            <h5><em class="bi bi-phone text-info" aria-hidden="true"></em> Progressive Web App (PWA)</h5>
             <p>
               Una Progressive Web App (PWA) è un'applicazione web progettata per offrire un'esperienza simile a quella di un'applicazione nativa. Utilizza tecnologie standard del web per garantire buone prestazioni, funzionamento offline e possibilità di installazione sul dispositivo dell'utente.
             </p>
@@ -28,7 +28,7 @@
               L'implementazione tipica di una PWA prevede la definizione di un manifest con nome, icone e colori dell'applicazione, la registrazione di un service worker e la scelta di una strategia di caching adeguata (ad esempio cache-first o network-first). È importante selezionare con attenzione quali risorse rendere disponibili offline, privilegiando quelle statiche e fondamentali per l'interfaccia.
             </p>
             <hr class="border-secondary">
-            <h6><i class="bi bi-brush text-success"></i> anime.js libreria per animazioni</h6>
+            <h5><em class="bi bi-brush text-success" aria-hidden="true"></em> anime.js libreria per animazioni</h5>
             <p>
               anime.js è una libreria JavaScript leggera che consente di creare animazioni fluide e controllate su elementi HTML, proprietà CSS, SVG e valori numerici. Offre un'API semplice ma flessibile, adatta sia a animazioni di base sia a sequenze più complesse.
             </p>
@@ -48,11 +48,6 @@
             <p>
               In un'applicazione web, anime.js viene utilizzata per migliorare l'usabilità e il feedback visivo, ad esempio animando transizioni tra viste, aperture di pannelli o cambiamenti di stato. Un uso moderato delle animazioni contribuisce a rendere l'interfaccia più chiara e intuitiva, senza distrarre l'utente.
             </p>
-          </div>
-          <div class="card-footer text-muted">
-            <small>
-              <i class="bi bi-info-circle"></i> Piccole scelte pragmatiche: PWA e animazioni ben fatte migliorano l'esperienza senza complicare l'architettura.
-            </small>
           </div>
         </div>
       </div>

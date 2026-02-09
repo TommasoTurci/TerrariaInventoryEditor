@@ -1,6 +1,6 @@
 <template>
   <div class="import-view slide-in">
-    <h2 class="mb-4"><i class="bi bi-upload"></i> Importa Personaggio</h2>
+    <h2 class="mb-4"><em class="bi bi-upload" aria-hidden="true"></em> Importa Personaggio</h2>
     <div class="card">
       <div class="card-body">
         <div class="file-drop-zone"
@@ -9,27 +9,28 @@
              @drop.prevent="handleDrop"
              :class="{ dragover: dragover }"
              @click="$refs.fileInput.click()">
-          <i class="bi bi-cloud-upload display-4"></i>
-          <h5>Trascina qui un file .plr o .json</h5>
+          <em class="bi bi-cloud-upload display-4" aria-hidden="true"></em>
+          <h3>Trascina qui un file .plr o .json</h3>
           <p class="text-muted">oppure clicca per selezionare</p>
-          <input type="file" ref="fileInput" @change="handleFileSelect" accept=".plr,.json" style="display: none">
+          <label for="file-input" class="visually-hidden">Seleziona file .plr o .json</label>
+          <input id="file-input" type="file" ref="fileInput" @change="handleFileSelect" accept=".plr,.json" title="Seleziona un file .plr o .json" style="display: none">
         </div>
 
         <div class="row mt-3">
           <div class="col-md-6">
             <button class="btn btn-terraria w-100" @click="createEmptyPlayer">
-              <i class="bi bi-plus-circle"></i> Crea Personaggio Vuoto
+              <em class="bi bi-plus-circle" aria-hidden="true"></em> Crea Personaggio Vuoto
             </button>
           </div>
           <div class="col-md-6">
             <button class="btn btn-outline-light w-100" @click="loadDemoPlayer">
-              <i class="bi bi-collection"></i> Carica personaggio di esempio
+              <em class="bi bi-collection" aria-hidden="true"></em> Carica personaggio di esempio
             </button>
           </div>
         </div>
 
         <div class="alert alert-danger mt-3" v-if="error">
-          <i class="bi bi-exclamation-triangle"></i> {{ error }}
+          <em class="bi bi-exclamation-triangle" aria-hidden="true"></em> {{ error }}
         </div>
 
         <div class="text-center mt-3" v-if="loading">

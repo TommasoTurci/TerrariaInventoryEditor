@@ -34,9 +34,9 @@
 
     <footer class="footer bg-dark text-light py-3 mt-auto">
       <div class="container text-center">
-          <p class="mb-0">
-              <i class="bi bi-controller"></i> Terraria Inventory Editor
-          </p>
+            <p class="mb-0">
+              <em class="bi bi-controller" aria-hidden="true"></em> Terraria Inventory Editor
+            </p>
           <small class="text-muted">Versione supportata: Terraria 1.4.5</small>
       </div>
     </footer> 

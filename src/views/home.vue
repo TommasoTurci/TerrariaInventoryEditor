@@ -14,13 +14,13 @@
       <div class="col-md-6">
         <div class="card h-100 mx-auto">
           <div class="card-body text-center">
-            <i class="bi bi-upload display-4 text-info mb-3"></i>
-            <h5 class="card-title">Importa Personaggio</h5>
-            <p class="card-text text-muted">
+              <em class="bi bi-upload display-4 text-info mb-3" aria-hidden="true"></em>
+              <h2 class="card-title">Importa Personaggio</h2>
+              <p class="card-text text-muted">
               Carica un file .plr di Terraria o importa da JSON
             </p>
             <router-link to="/import" class="btn btn-terraria">
-              <i class="bi bi-arrow-right"></i> Vai all'Importazione
+                <em class="bi bi-arrow-right" aria-hidden="true"></em> Vai all'Importazione
             </router-link>
           </div>
         </div>
@@ -29,27 +29,27 @@
 
     <div class="card" v-if="players.length > 0">
       <div class="card-header">
-        <i class="bi bi-people"></i> Personaggi Salvati
+        <em class="bi bi-people" aria-hidden="true"></em> Personaggi Salvati
       </div>
       <div class="card-body">
         <div class="row g-3">
           <div class="col-md-4" v-for="player in players" :key="player.id">
             <div class="card bg-dark">
               <div class="card-body">
-                <h6 class="card-title">
-                  <i class="bi bi-person-circle text-warning"></i>
+                <h3 class="card-title">
+                  <em class="bi bi-person-circle text-warning" aria-hidden="true"></em>
                   {{ player.name }}
-                </h6>
+                </h3>
                 <small class="text-muted">
                   HP: {{ player.health }}/{{ player.maxHealth }} | 
                   Mana: {{ player.mana }}/{{ player.maxMana }}
                 </small>
                 <div class="mt-2">
                   <button class="btn btn-sm btn-outline-light me-1" @click="selectPlayer(player.id)">
-                    <i class="bi bi-eye"></i> Visualizza
+                    <em class="bi bi-eye" aria-hidden="true"></em> Visualizza
                   </button>
                   <button class="btn btn-sm btn-outline-danger" @click="deletePlayer(player.id)">
-                    <i class="bi bi-trash"></i>
+                    <em class="bi bi-trash" aria-hidden="true"></em>
                   </button>
                 </div>
               </div>
